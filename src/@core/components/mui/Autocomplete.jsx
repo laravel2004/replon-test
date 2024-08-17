@@ -12,4 +12,6 @@ const CustomAutocomplete = forwardRef((props, ref) => {
   )
 })
 
+CustomAutocomplete.displayName = 'CustomAutocomplete'
+
 export default CustomAutocomplete

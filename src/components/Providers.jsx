@@ -5,6 +5,7 @@ import ThemeProvider from '@components/theme'
 
 // Util Imports
 import { getDemoName, getMode, getSettingsFromCookie, getSystemMode } from '@core/utils/serverHelpers'
+import ReactQueryProvider from "@components/ReactQueryProvider";
 
 const Providers = props => {
   // Props
@@ -17,13 +18,15 @@ const Providers = props => {
   const systemMode = getSystemMode()
 
   return (
-    <VerticalNavProvider>
-      <SettingsProvider settingsCookie={settingsCookie} mode={mode} demoName={demoName}>
-        <ThemeProvider direction={direction} systemMode={systemMode}>
-          {children}
-        </ThemeProvider>
-      </SettingsProvider>
-    </VerticalNavProvider>
+    <ReactQueryProvider>
+      <VerticalNavProvider>
+        <SettingsProvider settingsCookie={settingsCookie} mode={mode} demoName={demoName}>
+          <ThemeProvider direction={direction} systemMode={systemMode}>
+            {children}
+          </ThemeProvider>
+        </SettingsProvider>
+      </VerticalNavProvider>
+    </ReactQueryProvider>
   )
 }
 

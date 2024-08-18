@@ -5,6 +5,9 @@ import { useState } from 'react'
 import CardPresentage from '@views/home/CardPresentage'
 import TabsPerHour from '@views/monitoring/TabsPerHour'
 import { useGetMonitoring } from "@/features/monitoring/useGetMonitoring";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import ScatterVs from "@views/monitoring/ScatterVs";
 
 export default function Page() {
   const [gr, setGr] = useState(1);
@@ -92,6 +95,36 @@ export default function Page() {
       </div>
       <Grid item xs={12} className='mt-4'>
         <TabsPerHour />
+      </Grid>
+      <Grid container spacing={2} className='mt-4'>
+        <Grid item xs={12} sm={12} md={3}>
+          <Card>
+            <CardContent>
+              <Typography variant='h3' className='text-center'>Status Pompa</Typography>
+              <Typography variant='h4' className='text-center'>ON</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid container xs={12} sm={12} md={9}>
+          <Grid item xs={12} sm={6} md={4}>
+            <div>
+              <Typography variant="body2" className="text-center" >Temperature with humidity</Typography>
+              <ScatterVs />
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <div>
+              <Typography variant="body2" className="text-center">Temperature vs light intensity</Typography>
+              <ScatterVs/>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <div>
+              <Typography variant="body2" className="text-center">Temperature vs light intensity</Typography>
+              <ScatterVs/>
+            </div>
+          </Grid>
+        </Grid>
       </Grid>
     </section>
   )

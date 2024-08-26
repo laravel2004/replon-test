@@ -82,28 +82,6 @@ const renderTabs = value => {
 }
 
 const renderTabPanels = (value, theme, options, colors) => {
-  const { data, isLoading, error } = useOverview()
-
-  if (isLoading)
-    return (
-      <Typography variant='h3' className='text-center'>
-        Loading...
-      </Typography>
-    )
-  if (error)
-    return (
-      <Typography variant='h3' className='text-center'>
-        Error loading data.
-      </Typography>
-    )
-
-  if (!data) return
-  tabData.map((item, index) => {
-    if (item.type === data[index].type) {
-      item.series[0].data = data[index].series
-    }
-  })
-
   return tabData.map((item, index) => {
     const max = Math.max(...item.series[0].data)
     const seriesIndex = item.series[0].data.indexOf(max)
@@ -134,6 +112,30 @@ const TabsIndicator = () => {
   // Vars
   const _mode = (mode === 'system' ? serverMode : mode) || 'light'
   const disabledText = rgbaToHex(`rgb(${theme.mainColorChannels[_mode]} / 0.4)`)
+
+  const { data, isLoading, error } = useOverview()
+
+  if (isLoading)
+    return (
+      <Typography variant='h3' className='text-center'>
+        Loading...
+      </Typography>
+    )
+  if (error)
+    return (
+      <Typography variant='h3' className='text-center'>
+        Error loading data.
+      </Typography>
+    )
+
+  if (!data) return
+  tabData.map((item, index) => {
+    if (item.type === data[index].type) {
+      item.series[0].data = data[index].series
+    }
+  })
+
+  console.log(data)
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
